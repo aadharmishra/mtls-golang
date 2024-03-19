@@ -3,14 +3,16 @@ package main
 import (
 	"crypto/tls"
 	"crypto/x509"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, secure world from server!")
+	w.Header().Set("Content-Type", "application/json")
+
+	data := []byte(`{"message": "Hello from the server!"}`)
+	w.Write(data)
 }
 
 func main() {
@@ -43,5 +45,6 @@ func main() {
 
 	// Create HTTP server with handler and listener
 	srv := &http.Server{Handler: http.HandlerFunc(handler)}
+
 	log.Fatal(srv.Serve(listener))
 }
