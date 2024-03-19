@@ -17,14 +17,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	// Load server certificate and key
-	cert, err := tls.LoadX509KeyPair("/Users/aadharmishra/Documents/mtls/server.crt", "/Users/aadharmishra/Documents/mtls/server.key")
+	cert, err := tls.LoadX509KeyPair("server.crt", "server.key")
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// Create a certificate pool for trusted CA
 	caPool := x509.NewCertPool()
-	caCert, err := os.ReadFile("/Users/aadharmishra/Documents/mtls/ca.crt")
+	caCert, err := os.ReadFile("ca.crt")
 	if err != nil {
 		log.Fatal(err)
 	}

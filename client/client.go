@@ -12,14 +12,14 @@ import (
 
 func main() {
 	// Load client certificate and key
-	cert, err := tls.LoadX509KeyPair("/Users/aadharmishra/Documents/mtls/client.crt", "/Users/aadharmishra/Documents/mtls/client.key")
+	cert, err := tls.LoadX509KeyPair("client.crt", "client.key")
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// Create a certificate pool for trusted CA
 	caPool := x509.NewCertPool()
-	caCert, err := os.ReadFile("/Users/aadharmishra/Documents/mtls/ca.crt")
+	caCert, err := os.ReadFile("ca.crt")
 	if err != nil {
 		log.Fatal(err)
 	}
